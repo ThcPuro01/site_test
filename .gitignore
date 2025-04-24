@@ -1,0 +1,21 @@
+# Ignorar diretórios do sistema
+Ambiente de Impressão/
+Ambiente de Rede/
+AppData/
+Configurações Locais/
+Cookies/
+Dados de Aplicativos/
+Documents/
+Menu Iniciar/
+Meus Documentos/
+Modelos/
+Recent/
+SendTo/
+NTUSER.DAT*
+*.regtrans-ms
+*.blf
+*.ini
+
+# Ignorar tudo fora do diretório atual
+!site_test/
+!site_test/**

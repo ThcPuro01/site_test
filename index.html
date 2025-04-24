@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mania de Sonho</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <div id="header"></div>
+  <main>
+    <!-- Seção inicial -->
+    <section id="inicio">
+      <h2>Bem-vindo!</h2>
+      <p class="bem-vindos">Bem-vindos ao mundo dos doces sonhos!</p>
+
+      <!-- Carrossel apenas na seção inicial -->
+      <div class="carrossel">
+        <div class="slides">
+          <img src="imagens/img1.jpeg" alt="Produto 1">
+          <img src="imagens/img2.jpeg" alt="Produto 2">
+          <img src="imagens/img3.jpeg" alt="Produto 3">
+        </div>
+        <div class="seletor">
+          <button class="prev">&lt;</button>
+          <button class="next">&gt;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Quem Somos -->
+    <section id="quem-somos" class="hidden">
+      <h2>Quem Somos</h2>
+      <p>A Mania de Sonho nasceu com a missão de transformar doces em momentos de felicidade.</p>
+    </section>
+
+    <!-- Seção Produtos -->
+    <section id="produtos" class="hidden">
+      <h2>Produtos</h2>
+      <div class="produtos-grid">
+        <div class="produto">
+          <img src="imagens/img1.jpeg" alt="Produto 1">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <button class="btn-pedido" onclick="mostrarSecao('encomendas')">Faça seu pedido</button>
+        </div>
+        <div class="produto">
+          <img src="imagens/img2.jpeg" alt="Produto 2">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <button class="btn-pedido" onclick="mostrarSecao('encomendas')">Faça seu pedido</button>
+        </div>
+        <div class="produto">
+          <img src="imagens/img3.jpeg" alt="Produto 3">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <button class="btn-pedido" onclick="mostrarSecao('encomendas')">Faça seu pedido</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Encomendas -->
+    <section id="encomendas" class="hidden">
+      <h2>Encomendas</h2>
+      <form id="form-encomenda">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="produto">Produto:</label>
+        <input type="text" id="produto" name="produto" required>
+        
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" name="quantidade" required>
+        
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem"></textarea>
+        
+        <button type="submit">Enviar Pedido</button>
+      </form>
+    </section>
+
+    <!-- Seção Feedback -->
+    <section id="feedback" class="hidden">
+      <h2>Feedback</h2>
+      <form id="form-feedback">
+        <label for="nome-feedback">Nome:</label>
+        <input type="text" id="nome-feedback" name="nome-feedback" required>
+        
+        <label for="email-feedback">Email:</label>
+        <input type="email" id="email-feedback" name="email-feedback" required>
+        
+        <label for="mensagem-feedback">Mensagem:</label>
+        <textarea id="mensagem-feedback" name="mensagem-feedback" required></textarea>
+        
+        <button type="submit">Enviar Feedback</button>
+      </form>
+    </section>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Carregar o cabeçalho dinamicamente
+      fetch('header.html')
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById('header').innerHTML = data;
+
+          // Adicionar eventos de navegação após carregar o cabeçalho
+          document.querySelectorAll('nav a').forEach((link) => {
+            link.addEventListener('click', (e) => {
+              e.preventDefault();
+              const targetId = e.target.getAttribute('onclick').match(/'([^']+)'/)[1];
+              mostrarSecao(targetId);
+            });
+          });
+        });
+
+      // Exibir apenas a seção inicial ao carregar a página
+      mostrarSecao('inicio');
+    });
+
+    // Função para alternar entre as seções
+    function mostrarSecao(id) {
+      document.querySelectorAll('main section').forEach((secao) => {
+        secao.classList.add('hidden');
+      });
+
+      const secaoSelecionada = document.getElementById(id);
+      if (secaoSelecionada) {
+        secaoSelecionada.classList.remove('hidden');
+      }
+    }
+  </script>
+  <script src="scripts/carrossel.js"></script>
+</body>
+</html>
