@@ -2,18 +2,23 @@
 /* CSS Document */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: 'Quicksand', sans-serif;
-  font-size: 16px; /* Tamanho padrão da fonte */
-  line-height: 1.6; /* Altura da linha para melhor legibilidade */
-  background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), 
-              url('imagens/img1.jpeg') no-repeat center center/cover; /* Fundo aplicado ao site */
-  color: #272030; /* Cor padrão do texto */
+  font-size: 16px;
+  /* Tamanho padrão da fonte */
+  line-height: 1.6;
+  /* Altura da linha para melhor legibilidade */
+  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
+    url('imagens/img1.jpeg') no-repeat center center/cover;
+  /* Fundo aplicado ao site */
+  color: #272030;
+  /* Cor padrão do texto */
 }
 
 main {
@@ -24,19 +29,24 @@ main {
 header {
   position: relative;
   width: 100%;
-  background-color: #FF5757; /* Cor de fundo do cabeçalho */
+  background-color: #FF5757;
+  /* Cor de fundo do cabeçalho */
   color: white;
   text-align: center;
   padding: 12px 0;
   font-family: 'Quicksand', sans-serif;
-  z-index: 10; /* Garante que o cabeçalho fique acima de outros elementos */
-  margin: 0; /* Remove qualquer margem */
+  z-index: 10;
+  /* Garante que o cabeçalho fique acima de outros elementos */
+  margin: 0;
+  /* Remove qualquer margem */
 }
 
 /* Estilo para o menu de navegação */
 nav {
-  margin: 0; /* Remove qualquer margem */
-  padding: 0; /* Remove qualquer padding */
+  margin: 0;
+  /* Remove qualquer margem */
+  padding: 0;
+  /* Remove qualquer padding */
 }
 
 nav ul {
@@ -46,7 +56,8 @@ nav ul {
   display: flex;
   justify-content: center;
   background: #ffe0cc;
-  border-radius: 0 0 20px 20px; /* Bordas arredondadas apenas na parte inferior */
+  border-radius: 0 0 20px 20px;
+  /* Bordas arredondadas apenas na parte inferior */
   box-shadow: 0 2px 6px #272030;
 }
 
@@ -80,8 +91,15 @@ section h2 {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Ocultar seções com a classe hidden */
@@ -110,18 +128,22 @@ form {
   box-shadow: 0 4px 12px #272030;
 }
 
-label, input, textarea {
+label,
+input,
+textarea {
   margin-bottom: 16px;
 }
 
-input, textarea {
+input,
+textarea {
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 10px;
   transition: all 300ms ease;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   border-color: #ff5757;
   outline: none;
   box-shadow: 0 0 5px #ff3131;
@@ -161,7 +183,7 @@ button:hover {
 
 .galeria img:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 #quem-somos {
@@ -170,94 +192,84 @@ button:hover {
 }
 
 /* Estilo para o carrossel */
-.carrossel {
+.carrossel-container {
   position: relative;
   width: 100%;
-  height: 300px; /* Altura do carrossel */
-  overflow: hidden; /* Oculta as imagens que estão fora da área visível */
-  margin-top: 20px;
-}
-
-.slides {
-  display: flex;
-  transition: transform 500ms ease-in-out; /* Animação suave ao mudar de slide */
-  width: 300%; /* 100% para cada imagem (3 imagens = 300%) */
-  height: 100%;
-}
-
-.slides img {
-  width: 100%; /* Cada imagem ocupa 100% da largura do carrossel */
-  height: 100%;
-  object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorção */
-}
-
-/* Botões do carrossel */
-.seletor {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-}
-
-.seletor button {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 24px;
-  border-radius: 50%;
-}
-
-.seletor button:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Estilo para o carrossel apenas na seção inicial */
-#inicio .carrossel {
-  position: relative;
-  width: 100%;
-  height: 300px; /* Altura fixa para o carrossel */
+  height: 300px;
   overflow: hidden;
-  margin-top: 20px; /* Espaçamento entre a mensagem de boas-vindas e o carrossel */
 }
 
-#inicio .slides {
+.carrossel {
   display: flex;
-  transition: transform 500ms ease-in-out;
-  width: calc(100% * 5); /* Ajuste para 5 imagens */
-  height: 100%;
-}
-
-#inicio .slides img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Garante que a imagem preencha o espaço sem distorção */
+  position: relative;
 }
 
-#inicio .seletor {
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carrossel-btn {
   position: absolute;
   top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
   transform: translateY(-50%);
-}
-
-#inicio .seletor button {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  padding: 10px;
+  padding: 10px 15px;
   cursor: pointer;
-  font-size: 24px;
-  border-radius: 50%;
+  font-size: 18px;
+  z-index: 10;
 }
 
-#inicio .seletor button:hover {
+.carrossel-btn:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.indicadores {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 10;
+}
+
+.indicador {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.indicador.active {
+  background-color: white;
 }
 
 /* Produtos em fileiras */
@@ -303,9 +315,12 @@ button:hover {
 }
 
 .container {
-  max-width: 1200px; /* Define uma largura máxima para o site */
-  margin: 0 auto; /* Centraliza o conteúdo */
-  padding: 0 16px; /* Adiciona espaçamento lateral */
+  max-width: 1200px;
+  /* Define uma largura máxima para o site */
+  margin: 0 auto;
+  /* Centraliza o conteúdo */
+  padding: 0 16px;
+  /* Adiciona espaçamento lateral */
 }
 
 #inicio {
@@ -324,7 +339,8 @@ button:hover {
 /* Botão "Encomende Já" */
 .btn-encomende {
   padding: 12px 16px;
-  background-color: #FF5757; /* Vermelho claro */
+  background-color: #FF5757;
+  /* Vermelho claro */
   color: white;
   border: none;
   border-radius: 12px;
@@ -335,44 +351,55 @@ button:hover {
 }
 
 .btn-encomende:hover {
-  background-color: #FF3131; /* Vermelho mais forte */
+  background-color: #FF3131;
+  /* Vermelho mais forte */
 }
 
 /* Estilo para os títulos */
 h2 {
-  font-family: 'Quicksand', sans-serif; /* Fonte para os títulos */
-  font-size: 28px; /* Tamanho da fonte dos títulos */
-  color: #FF5757; /* Cor dos títulos */
-  text-align: center; /* Centraliza os títulos */
+  font-family: 'Quicksand', sans-serif;
+  /* Fonte para os títulos */
+  font-size: 28px;
+  /* Tamanho da fonte dos títulos */
+  color: #FF5757;
+  /* Cor dos títulos */
+  text-align: center;
+  /* Centraliza os títulos */
   margin-bottom: 16px;
   font-weight: bold;
 }
 
 /* Estilo para os parágrafos */
 p {
-  font-family: 'Quicksand', sans-serif; /* Fonte para os parágrafos */
-  font-size: 16px; /* Tamanho da fonte dos parágrafos */
-  color: #555; /* Cor dos parágrafos */
+  font-family: 'Quicksand', sans-serif;
+  /* Fonte para os parágrafos */
+  font-size: 16px;
+  /* Tamanho da fonte dos parágrafos */
+  color: #555;
+  /* Cor dos parágrafos */
   margin-bottom: 16px;
 }
 
 /* Para telas grandes (desktop) */
 @media (min-width: 1024px) {
   .slides img {
-    height: 300px; /* Altura fixa para desktops */
+    height: 300px;
+    /* Altura fixa para desktops */
   }
 }
 
 /* Para telas médias (tablet) */
 @media (max-width: 1023px) and (min-width: 768px) {
   .slides img {
-    height: 250px; /* Altura reduzida para tablets */
+    height: 250px;
+    /* Altura reduzida para tablets */
   }
 }
 
 /* Para telas pequenas (celular) */
 @media (max-width: 767px) {
   .slides img {
-    height: 200px; /* Altura menor para celulares */
+    height: 200px;
+    /* Altura menor para celulares */
   }
 }

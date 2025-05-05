@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrossel de Imagens</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .carrossel-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .carrossel {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carrossel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 10;
+        }
+
+        .carrossel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .indicadores {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+        }
+
+        .indicador {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .indicador.active {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="carrossel-container">
+        <div class="carrossel">
+            <div class="slide active">
+                <img src="imagens/img1.jpeg" alt="Imagem 1">
+            </div>
+            <div class="slide">
+                <img src="imagens/img2.jpeg" alt="Imagem 2">
+            </div>
+            <div class="slide">
+                <img src="imagens/img4.jpeg" alt="Imagem 3">
+            </div>
+        </div>
+        
+        <button class="carrossel-btn prev" onclick="mudarSlide(-1)">&#10094;</button>
+        <button class="carrossel-btn next" onclick="mudarSlide(1)">&#10095;</button>
+        
+        <div class="indicadores">
+            <span class="indicador active" onclick="irParaSlide(0)"></span>
+            <span class="indicador" onclick="irParaSlide(1)"></span>
+            <span class="indicador" onclick="irParaSlide(2)"></span>
+        </div>
+    </div>
+
+    <script>
+        let slideAtual = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicadores = document.querySelectorAll('.indicador');
+        let intervaloCarrossel;
+
+        function iniciarCarrossel() {
+            intervaloCarrossel = setInterval(() => {
+                mudarSlide(1);
+            }, 5000);
+        }
+
+        function mostrarSlide(n) {
+            // Esconde todos os slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Remove a classe active de todos os indicadores
+            indicadores.forEach(ind => {
+                ind.classList.remove('active');
+            });
+            
+            // Atualiza o slide atual
+            slideAtual = (n + slides.length) % slides.length;
+            
+            // Mostra o slide atual
+            slides[slideAtual].classList.add('active');
+            indicadores[slideAtual].classList.add('active');
+            
+            // Reinicia o intervalo
+            clearInterval(intervaloCarrossel);
+            iniciarCarrossel();
+        }
+
+        function mudarSlide(n) {
+            mostrarSlide(slideAtual + n);
+        }
+
+        function irParaSlide(n) {
+            mostrarSlide(n);
+        }
+
+        // Inicializa o carrossel
+        document.addEventListener('DOMContentLoaded', () => {
+            mostrarSlide(0);
+            iniciarCarrossel();
+        });
+    </script>
+</body>
+</html>

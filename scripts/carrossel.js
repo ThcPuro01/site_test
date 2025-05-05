@@ -1,32 +1,47 @@
+let slideAtual = 0;
+const slides = document.querySelectorAll('.slide');
+const indicadores = document.querySelectorAll('.indicador');
+let intervaloCarrossel;
+
+function iniciarCarrossel() {
+  intervaloCarrossel = setInterval(() => {
+    mudarSlide(1);
+  }, 5000);
+}
+
+function mostrarSlide(n) {
+  // Esconde todos os slides
+  slides.forEach(slide => {
+    slide.classList.remove('active');
+  });
+
+  // Remove a classe active de todos os indicadores
+  indicadores.forEach(ind => {
+    ind.classList.remove('active');
+  });
+
+  // Atualiza o slide atual
+  slideAtual = (n + slides.length) % slides.length;
+
+  // Mostra o slide atual
+  slides[slideAtual].classList.add('active');
+  indicadores[slideAtual].classList.add('active');
+
+  // Reinicia o intervalo
+  clearInterval(intervaloCarrossel);
+  iniciarCarrossel();
+}
+
+function mudarSlide(n) {
+  mostrarSlide(slideAtual + n);
+}
+
+function irParaSlide(n) {
+  mostrarSlide(n);
+}
+
+// Inicializa o carrossel
 document.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelector('.slides');
-  const prevButton = document.querySelector('.prev');
-  const nextButton = document.querySelector('.next');
-  const totalSlides = document.querySelectorAll('.slides img').length; // Total de imagens no carrossel
-  let slideIndex = 0;
-
-  function mostrarSlide() {
-    // Move o carrossel para o slide atual
-    slides.style.transform = `translateX(-${slideIndex * 100}%)`;
-  }
-
-  if (prevButton && nextButton) {
-    prevButton.addEventListener('click', () => {
-      // Volta para o slide anterior (com loop)
-      slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
-      mostrarSlide();
-    });
-
-    nextButton.addEventListener('click', () => {
-      // Avança para o próximo slide (com loop)
-      slideIndex = (slideIndex + 1) % totalSlides;
-      mostrarSlide();
-    });
-
-    // Troca automática de slides a cada 5 segundos
-    setInterval(() => {
-      slideIndex = (slideIndex + 1) % totalSlides;
-      mostrarSlide();
-    }, 5000);
-  }
+  mostrarSlide(0);
+  iniciarCarrossel();
 });
