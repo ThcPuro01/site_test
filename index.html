@@ -5,16 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mania de Sonho</title>
   <link rel="stylesheet" href="estilos.css">
+  <link rel="icon" href="/" type="image/x-icon">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM5z1d8Z9T7ZQh3L4o5xG5L5e5o5x5y5z5x5y5" crossorigin="anonymous">con.ico" type="image/x-icon">
+
 </head>
 <body>
   <div id="header"></div>
+
   <main>
     <!-- Seção inicial -->
     <section id="inicio">
       <h2>Bem-vindo!</h2>
       <p class="bem-vindos">Bem-vindos ao mundo dos doces sonhos!</p>
-
-      <!-- Carrossel apenas na seção inicial -->
       <div class="carrossel-container">
         <div class="carrossel">
             <div class="slide active">
@@ -27,24 +31,27 @@
                 <img src="imagens/img4.jpeg" alt="Imagem 3">
             </div>
         </div>
-        
         <button class="carrossel-btn prev" onclick="mudarSlide(-1)">&#10094;</button>
         <button class="carrossel-btn next" onclick="mudarSlide(1)">&#10095;</button>
-        
         <div class="indicadores">
             <span class="indicador active" onclick="irParaSlide(0)"></span>
             <span class="indicador" onclick="irParaSlide(1)"></span>
             <span class="indicador" onclick="irParaSlide(2)"></span>
         </div>
-    </div>
-
-
+      </div>
     </section>
 
     <!-- Seção Quem Somos -->
     <section id="quem-somos" class="hidden">
       <h2>Quem Somos</h2>
-      <p>A Mania de Sonho nasceu com a missão de transformar doces em momentos de felicidade.</p>
+      <p><strong>Eita Sonho Bão!</strong> nasceu da paixão por doces artesanais e do desejo de reinventar um clássico da confeitaria brasileira: o sonho.<br><br>
+        Nosso diferencial está na combinação perfeita entre tradição e inovação, oferecendo um produto assado, mais leve e irresistivelmente saboroso.<br><br>
+        Nosso carro-chefe, o <strong>sonho assado com recheio de goiabada</strong>, é feito com ingredientes selecionados, massa macia e aerada, e goiabada cremosa, equilibrando sabor e leveza.<br>
+        Tudo isso sem fritura, oferecendo uma experiência deliciosa e mais saudável.<br><br>
+        Acreditamos na valorização da culinária afetiva, resgatando sabores que despertam memórias e criam experiências.<br>
+        Nosso compromisso é encantar paladares com um doce artesanal de alta qualidade, preparado com carinho e atenção.<br><br>
+        <strong>Público-alvo:</strong> frequentadores de feiras e eventos gastronômicos, famílias, apreciadores da cultura tradicional brasileira, empresas e revendedores de produtos diferenciados.
+        .</p>
     </section>
 
     <!-- Seção Produtos -->
@@ -52,18 +59,18 @@
       <h2>Produtos</h2>
       <div class="produtos-grid">
         <div class="produto">
-          <img src="imagens/img1.jpeg" alt="Produto 1">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <img src="imagens/6.jpeg" alt="Produto 1">
+          
           <button class="btn-pedido" onclick="mostrarSecao('encomendas')">Faça seu pedido</button>
         </div>
         <div class="produto">
-          <img src="imagens/img2.jpeg" alt="Produto 2">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <img src="imagens/7.jpeg" alt="Produto 2">
+          
           <button class="btn-pedido" onclick="mostrarSecao('encomendas')">Faça seu pedido</button>
         </div>
         <div class="produto">
           <img src="imagens/img3.jpeg" alt="Produto 3">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+         
           <button class="btn-pedido" onclick="mostrarSecao('encomendas')">Faça seu pedido</button>
         </div>
       </div>
@@ -109,6 +116,10 @@
       </form>
     </section>
   </main>
+
+  <!-- Rodapé carregado dinamicamente -->
+  <div id="footer"></div>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Carregar o cabeçalho dinamicamente
@@ -116,8 +127,6 @@
         .then((response) => response.text())
         .then((data) => {
           document.getElementById('header').innerHTML = data;
-
-          // Adicionar eventos de navegação após carregar o cabeçalho
           document.querySelectorAll('nav a').forEach((link) => {
             link.addEventListener('click', (e) => {
               e.preventDefault();
@@ -127,16 +136,21 @@
           });
         });
 
-      // Exibir apenas a seção inicial ao carregar a página
+      // Carregar o rodapé dinamicamente
+      fetch('footer.html')
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById('footer').innerHTML = data;
+        });
+
+      // Mostrar a seção inicial ao carregar
       mostrarSecao('inicio');
     });
 
-    // Função para alternar entre as seções
     function mostrarSecao(id) {
       document.querySelectorAll('main section').forEach((secao) => {
         secao.classList.add('hidden');
       });
-
       const secaoSelecionada = document.getElementById(id);
       if (secaoSelecionada) {
         secaoSelecionada.classList.remove('hidden');

@@ -19,3 +19,5 @@ NTUSER.DAT*
 # Ignorar tudo fora do diretório atual
 !site_test/
 !site_test/**
+# Ignorar arquivos de configuração do ambiente de desenvolvimento
+.env

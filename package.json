@@ -1,9 +1,10 @@
 {
   "name": "site_test",
   "version": "1.0.0",
-  "description": "## Project Overview The \"Mania de Sonho\" website is designed to showcase and facilitate orders for artisanal sweets. It includes sections for introducing the brand, displaying products, taking orders, and collecting user feedback.",
-  "main": "index.js",
+  "description": "Projecto do site Mania de Sonho",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,5 +12,9 @@
   "license": "ISC",
   "devDependencies": {
     "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
   }
 }
